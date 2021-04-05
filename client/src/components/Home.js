@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import moment from 'moment';
 import PopupRoomInfo from './PopupRoomInfo';
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart';
@@ -19,28 +18,6 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
     
     useEffect(() => {
         scrollToBottom();
-
-        moment.updateLocale('en', {
-            relativeTime : {
-                future: "in %s",
-                past:   "%s ago",
-                s  : '%ds',
-                ss : '%ds',
-                m:  "%dm",
-                mm: "%dm",
-                h:  "%dh",
-                hh: "%dh",
-                d:  "%dd",
-                dd: "%dd",
-                w:  "%dw",
-                ww: "%dw",
-                M:  "%dm",
-                MM: "%dm",
-                y:  "%dy",
-                yy: "%dy"
-            }
-        });
-
     }, []);
 
 
@@ -156,9 +133,6 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
                                                 <div className="message">
                                                     <span className="message_name">{msg.username}</span>
                                                     <span className="message_text">{msg.content}</span>
-                                                </div>
-                                                <div className="message_time">
-                                                    { moment(msg.date).fromNow() }
                                                 </div>
                                             </div>
                                         </div>

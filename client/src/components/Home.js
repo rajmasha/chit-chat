@@ -10,7 +10,8 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
 
-    const chatBottomRef = useRef(null)
+    const chatBottomRef = useRef(null);
+    const emojiSelector = useRef();
 
     const scrollToBottom = () => {
         chatBottomRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -33,6 +34,15 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
         if (e.keyCode === 13) {
             sendMessage(message);
             setMessage("");
+            setShowEmoji(false);
+        }
+    }
+
+    const handleEmojiKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            sendMessage(message);
+            setMessage("");
+            setShowEmoji(false);
         }
     }
 
@@ -58,9 +68,10 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
     }
 
 
-    const handleAppClick = () => {
-        if (showEmoji)
-            setShowEmoji(false);   
+    const handleAppClick = (e) => {
+        if (showEmoji && !emojiSelector.current.contains(e.target)) {
+            setShowEmoji(false); 
+        }
     }
 
 
@@ -70,7 +81,7 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
     }
 
     return (
-        <div className="chat_app" onClick={() => handleAppClick()}>
+        <div className="chat_app" onClick={(e) => handleAppClick(e)}>
             <div className="left_sidebar">
                 
                 <div className="logo_text">
@@ -152,13 +163,16 @@ const Home = ({ client: { user, logOut, users, chat, rooms, createRoom, updateRo
                     <div className="chat_input" style={{ position: 'relative' }}>
 
                         { showEmoji && 
-                            (<span style={{ position: 'absolute', bottom: 60, left: 0}}>
+                            (<span 
+                                ref={el => emojiSelector.current = el} 
+                                onKeyUp={(e) => handleEmojiKeyUp(e)}
+                                style={{ position: 'absolute', bottom: 60, left: 0}}>
                                 <Picker onSelect={addEmoji} emojiSize={20} />
                             </span>)
                         }
                         
                         <i className="far fa-smile-wink" style={{ marginRight: 8, color: "grey" }} onClick={() => setShowEmoji(prevState => !prevState)}></i>
-                        
+
                         <input 
                             type="text" 
                             value={message} 

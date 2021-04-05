@@ -1,0 +1,27 @@
+{
+  "name": "chit-chat",
+  "version": "1.0.0",
+  "description": "Chit Chat is a multiroom chat application built with socket.io, nodejs and reactjs",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon node server.js"
+  },
+  "keywords": [
+    "chat",
+    "multiroom chat",
+    "socket.io",
+    "chat socket.io",
+    "reactjs chat"
+  ],
+  "author": "Raj Asha",
+  "license": "MIT"
+}

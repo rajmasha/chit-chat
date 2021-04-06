@@ -3,7 +3,7 @@
 Chit Chat is a multiroom chat application built with socket.io, nodejs and reactjs.
 
 <p align="center">
-    <img src="/client/public/app_screenshot.png" />
+    <img src="/client/public/app_screenshot.png" width="70%" />
 </p>
 
 ## Features
